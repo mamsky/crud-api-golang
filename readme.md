@@ -54,7 +54,7 @@ go run main.go
 
 Visit `http://localhost:3000/swagger/index.html` after running the server.
 
-### Example request POST `/contacts`
+### Example request POST `api/contacts`
 
 ```json
 {
@@ -63,4 +63,10 @@ Visit `http://localhost:3000/swagger/index.html` after running the server.
   "phone": "08123456789",
   "gender": "male"
 }
+```
+
+### Example Request GET
+
+```bash
+  api/contacts?page=1&limit=5&gender=male
 ```
