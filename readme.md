@@ -14,16 +14,14 @@ Proyek ini adalah API RESTful sederhana yang dibangun menggunakan Go (Fiber) unt
 
 ```
 📁PT Zahir International
-├── config/                # Application configuration
+├── config/                # Konfigurasi aplikasi
 ├── controllers/           # API controllers (e.g. contact_controller.go)
 ├── database/              # DB connection setup
 ├── docs/                  # Swagger documentation
 ├── models/                # Data models (e.g. Contact struct)
 ├── routes/                # API route definitions
 ├── test/                  # Unit tests and mocks
-├── tmp/                   # Temp build files (ignored)
 ├── utils/                 # Utility functions (e.g. validation, pagination)
-├── .env                   # Environment variables
 ├── .env.example           # Example env file
 ├── go.mod                 # Go module definition
 ├── go.sum                 # Go module checksums
