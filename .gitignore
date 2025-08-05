@@ -1,0 +1,26 @@
+# Binaries
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+
+# Temporary files
+/tmp/
+/tmp/*
+*.log
+
+# Environment files
+.env
+
+# IDE/editor config
+.vscode/
+.idea/
+*.swp
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Go modules (should keep go.mod and go.sum)
+vendor/

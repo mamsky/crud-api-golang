@@ -1,0 +1,171 @@
+basePath: /api
+definitions:
+  models.Contact:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.CreateContactRequest:
+    properties:
+      email:
+        example: fulans@email.com
+        type: string
+      gender:
+        enum:
+        - male
+        - female
+        example: female
+        type: string
+      name:
+        example: buki9
+        type: string
+      phone:
+        example: "6281234567892"
+        type: string
+    required:
+    - email
+    - gender
+    - name
+    - phone
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: Ini adalah dokumentasi API kontak menggunakan Golang, Fiber, dan Swagger.
+  title: RESTful API Contact
+  version: "1.0"
+paths:
+  /contacts:
+    get:
+      consumes:
+      - application/json
+      description: Mengambil daftar semua data kontak dengan opsi pencarian, filter
+        gender, dan pagination
+      parameters:
+      - description: Nomor halaman
+        in: query
+        minimum: 1
+        name: page
+        type: integer
+      - description: Jumlah item per halaman (tidak boleh 0)
+        in: query
+        minimum: 1
+        name: limit
+        type: integer
+      - description: Filter berdasarkan gender ('male' atau 'female')
+        in: query
+        name: gender
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request jika parameter tidak valid
+        "500":
+          description: Internal Server Error jika query gagal
+      summary: Ambil semua kontak
+      tags:
+      - Contacts
+    post:
+      consumes:
+      - application/json
+      description: Buat data kontak baru dan simpan ke database
+      parameters:
+      - description: Contact
+        in: body
+        name: contact
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateContactRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreateContactRequest'
+        "400":
+          description: Bad Request
+      summary: Buat kontak baru
+      tags:
+      - Contacts
+  /contacts/{id}:
+    delete:
+      description: Hapus data kontak berdasarkan ID
+      parameters:
+      - description: Contact ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not Found
+      summary: Hapus kontak
+      tags:
+      - Contacts
+    get:
+      description: Ambil detail kontak berdasarkan ID
+      parameters:
+      - description: Contact ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Contact'
+        "404":
+          description: Not Found
+      summary: Ambil kontak berdasarkan ID
+      tags:
+      - Contacts
+    put:
+      consumes:
+      - application/json
+      description: Update data kontak berdasarkan ID
+      parameters:
+      - description: Contact ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Contact
+        in: body
+        name: contact
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateContactRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateContactRequest'
+        "400":
+          description: Bad Request
+      summary: Update kontak
+      tags:
+      - Contacts
+swagger: "2.0"
